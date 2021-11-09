@@ -26,7 +26,7 @@
         <tbody>
           <tr>
             <td>
-              KNURE
+              NURE
             </td>
             <td>
               <button type="button" class="btn btn-danger">Delete</button>
