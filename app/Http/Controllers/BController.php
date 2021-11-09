@@ -14,6 +14,7 @@ class BController extends Controller
             'message' => $message,
         ];
         return response()->json($response, 200);
+
     }
 
     public function sendError($error, $errorMessages = [], $code = 404)
