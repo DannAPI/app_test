@@ -18,6 +18,7 @@ class CreateUserCommentTable extends Migration
             $table->bigInteger('user_id');
             $table->bigInteger('comment_id');
             $table->timestamps();
+
         });
     }
 

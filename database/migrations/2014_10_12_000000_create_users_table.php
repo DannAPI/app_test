@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('phone_number');
             $table->bigInteger('department_id')->default(0);
             $table->timestamps();
+
         });
     }
 

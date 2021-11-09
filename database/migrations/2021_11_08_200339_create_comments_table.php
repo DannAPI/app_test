@@ -17,6 +17,7 @@ class CreateCommentsTable extends Migration
             $table->id();
             $table->string('comment')->nullable();
             $table->timestamps();
+
         });
     }
 
