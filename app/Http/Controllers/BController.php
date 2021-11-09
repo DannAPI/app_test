@@ -13,6 +13,7 @@ class BController extends Controller
             'data'    => $result,
             'message' => $message,
         ];
+
         return response()->json($response, 200);
     }
 
