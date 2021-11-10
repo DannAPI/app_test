@@ -24,29 +24,36 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>
-              NURE
-            </td>
-            <td>
-              <button type="button" class="btn btn-danger">Delete</button>
-            </td>
-          </tr>
+        @foreach($department as $one)
+            <form action="{{route('delete', ['id' => $one->id])}}" method ="POST">
+                @method('DELETE')
+                @csrf
+            <tr>
+                <td>
+                    {{$one->name ?? ""}}
+                </td>
+                <td>
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </td>
+            </tr>
+        </form>
+        @endforeach
         </tbody>
       </table>
     </div>
 
-
-    <form class="col-md-4 m-5">
+        <form action="{{route('depart')}}" method = "POST" class="col-md-4 m-5">
       <div class="mb-3">
+          @csrf
         <label for="departmentInput" class="mb-0 form-label">Department name</label>
-        <input type="text" class="form-control" id="departmentInput" aria-describedby="emailHelp">
+        <input type="text" class="form-control" name="name" id="name" aria-describedby="emailHelp" required>
+
       </div>
       <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 
 
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
   </body>
+
 </html>

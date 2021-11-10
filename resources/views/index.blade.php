@@ -11,39 +11,41 @@
   <body>
 
           <div class="form-group row">
-    <form class="col-md-4 m-5">
+              <form action="{{route('add')}}" method = "POST" class="col-md-4 m-5">
       <div class="mb-3">
-        <label for="emailInput" class="mb-0 form-label">Email address</label>
-        <input type="email" class="form-control" id="emailInput" aria-describedby="emailHelp">
+          @csrf
+          <label for="nameInput" class="mb-0 form-label">Name</label>
+          <input type="text" class="form-control" name="name" id="name" aria-describedby="emailHelp" required>
       </div>
       <div class="mb-3">
-        <label for="nameInput" class="mb-0 form-label">Name</label>
-        <input type="text" class="form-control" id="nameInput" aria-describedby="emailHelp">
+          <label for="emailInput" class="mb-0 form-label">Email address</label>
+          <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp" required>
       </div>
       <div class="mb-3">
         <label for="addressInput" class="mb-0 form-label">Address</label>
-        <input type="text" class="form-control" id="addressInput" aria-describedby="emailHelp">
+        <input type="text" class="form-control" name="user_address" id="user_address" aria-describedby="emailHelp" required>
       </div>
       <div class="mb-3">
         <label for="phoneInput" class="mb-0 form-label">Phone</label>
-        <input type="tel" class="form-control" id="phoneInput" aria-describedby="emailHelp">
+        <input type="tel" class="form-control" name="phone_number" id="phone_number" aria-describedby="emailHelp" required>
       </div>
       <div class="mb-3">
         <label for="commentInput" class="mb-0 form-label">Comment</label>
-        <textarea class="form-control" id="commentInput" rows="3"></textarea>
+{{--        <textarea class="form-control" name="comment" id="comment" rows="3" required></textarea>--}}
+          <input type="tel" class="form-control" name="comment" id="comment" aria-describedby="emailHelp" required>
       </div>
       <div class="mb-3">
         <label for="sel" class="mb-0 form-label">Departments</label>
-        <select id="sel" class="form-select">
-          <option>Departments</option>
-          <option>Departments1</option>
-          <option>Departments4</option>
-          <option>Departments65</option>
+        <select id="sel" class="form-select" name="department_id">
+            {{$departments = \App\Models\Department::all()}}
+            @foreach($departments as $department)
+          <option id="department_id" name="department_id" value="{{$department->id}}">{{$department->name}}</option>
+            @endforeach
         </select>
       </div>
       <button type="submit" class="btn btn-primary">Submit</button>
     </form>
-
+          </div>
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>

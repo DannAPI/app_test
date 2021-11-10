@@ -16,10 +16,10 @@
         <thead>
           <tr>
             <td>
-              Email
+              Name
             </td>
             <td>
-              Name
+              Email
             </td>
             <td>
               Address
@@ -28,34 +28,37 @@
               Phone
             </td>
             <td>
-              Comment
-            </td>
-            <td>
               Departments
             </td>
+              <td>
+              Comment
+              </td>
           </tr>
         </thead>
         <tbody>
+        @foreach($user as $one)
           <tr>
             <td>
-              Dann@g.com
+                <a href="{{ route('user_by_id', ['user_by_id' => $one->id]) }}">{{$one->name ?? ""}}</a>
             </td>
             <td>
-              Dann
+                {{$one->email ?? ""}}
             </td>
             <td>
-              Kharkiv
+                {{$one->user_address ?? ""}}
             </td>
             <td>
-              007
+                {{$one->phone_number ?? ""}}
             </td>
-            <td>
-              Hello my friends
+              <td>
+                  {{$one->department ? $one->department->name : ""}}
+              </td>
+              <td>
+                  {{$one->comment ?? ""}}
             </td>
-            <td>
-              NURE
-            </td>
+
           </tr>
+        @endforeach
         </tbody>
       </table>
     </div>

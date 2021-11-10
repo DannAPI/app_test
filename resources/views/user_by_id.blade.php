@@ -16,10 +16,10 @@
         <thead>
         <tr>
             <td>
-                Email
+               Name
             </td>
             <td>
-                Name
+                Email
             </td>
             <td>
                 Address
@@ -38,10 +38,10 @@
         <tbody>
 <tr>
         <td>
-            {{$user->email ?? ""}}
+            {{$user->name ?? ""}}
         </td>
         <td>
-             {{$user->name ?? ""}}
+            {{$user->email ?? ""}}
         </td>
         <td>
             {{$user->user_address ?? ""}}
@@ -50,9 +50,7 @@
             {{$user->phone_number ?? ""}}
         </td>
         <td>
-            @foreach($comment as $two)
-                {{$two->comment ?? ""}}
-            @endforeach
+            {{$user->comment ?? ""}}
         </td>
         <td>
             {{$user->department ? $user->department->name : ""}}
