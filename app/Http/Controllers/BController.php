@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-
 class BController extends Controller
 {
     public function sendResponse($result, $message)
@@ -14,7 +12,6 @@ class BController extends Controller
             'message' => $message,
         ];
         return response()->json($response, 200);
-
     }
 
     public function sendError($error, $errorMessages = [], $code = 404)

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Department;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -14,7 +13,8 @@ class DepartmentController extends BController
 
     public function all_department()
     {
-        return Department::all();
+        $department = Department::all();
+        return view('departments', ['department' => $department]);
     }
 
     public function add_department(Request $request)
@@ -27,7 +27,7 @@ class DepartmentController extends BController
             return $this->sendError('Validation Error.', $validator->errors());
         }
         $department = Department::create($input);
-        return $this->sendResponse($department->toArray(), 'Department created successfully.');
+        return redirect()->route('all', [$department]);
     }
 
     public function delete_department($id)
@@ -36,7 +36,7 @@ class DepartmentController extends BController
         if ($department) {
             $department->delete();
         } else return $this->sendError('Department for deleted not found');
-        return $this->sendResponse($department, 'Department deleted successfully.');
+        return redirect()->route('all', [$department]);
     }
 
 }
