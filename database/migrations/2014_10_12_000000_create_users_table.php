@@ -19,9 +19,9 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('user_address');
             $table->string('phone_number');
+            $table->text('comment');
             $table->bigInteger('department_id')->default(0);
             $table->timestamps();
-
         });
     }
 
