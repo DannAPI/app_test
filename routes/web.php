@@ -16,12 +16,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('index');
 });
-Route::get('/all-department', function () {
-    return view('departments');
-});
-Route::get('/all-user', function () {
-    return view('users');
-});
-Route::get('/user-by-id/{user_by_id}', function () {
-    return view('users');
-});
+//Route::get('/all-department', function () {
+//    return view('departments');
+//});
+//Route::get('/all-user', function () {
+//    return view('users');
+//});
+//Route::get('/user-by-id/{user_by_id}', function () {
+//    return view('users');
+//});
