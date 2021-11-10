@@ -2,13 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\BController;
-use App\Http\Resources\UserResource;
-use App\Models\Comment;
-use App\Models\Department;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\Validator;
 
 class UserController extends BController
@@ -16,7 +11,7 @@ class UserController extends BController
     public function all_user()
     {
         $user = User::all();
-        return UserResource::collection($user);
+        return view('users', ['user' => $user]);
     }
 
     public function add_user(Request $request)
@@ -26,15 +21,15 @@ class UserController extends BController
             'name' => 'required',
             'phone_number' => 'required',
             'user_address' => 'required',
+            'comment' => 'required',
             'email'=>'required|email',
-            'department_id'=>'required',
+            'department_id'=>'integer',
         ]);
         if ($validator->fails()) {
             return $this->sendError('Validation Error.', $validator->errors());
         }
         $user = User::create($input);
-
-        return $this->sendResponse($user->toArray(), 'User created successfully.');
+        return redirect()->route('users', [$user]);
     }
     public function user_by_id($id)
     {
@@ -42,7 +37,7 @@ class UserController extends BController
         if (is_null($user)) {
             return $this->sendError('User not found.');
         }
-        return new UserResource($user);
+        return view('user_by_id', ['user' => $user, 'comment' => $user->comment]);
     }
 
 }

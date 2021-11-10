@@ -20,8 +20,8 @@ class UserResource extends JsonResource
             'phone_number' => $this->phone_number,
             'user_address' => $this->user_address,
             'email' =>$this->email,
+            'comment'=>$this->comment,
             'department_id' =>$this->department,
-            'comments'=>CommentResource::collection($this->comment),
         ];
     }
 }
