@@ -25,10 +25,10 @@ class UserRequest extends FormRequest
     {
         return [
             'name' => 'required|string',
-            'phone_number' => 'required|string|min:10|numeric',
+            'phone_number' => 'required|string|digits_between:10,13',
             'user_address' => 'required|string',
             'comment' => 'required|string',
-            'email' => 'required', 'string', 'email', 'max:30', 'unique:users',
+            'email' => 'required|string|email|max:30|unique:users',
             'department_id'=>'integer',
         ];
     }
