@@ -11,28 +11,16 @@
   <body>
 
 
-    <div class="row m-5">
-      <table class="table table-dark table-striped">
+    <div class="justify-content-center row m-5">
+        <div class="col-md-7"> <table class="table table-dark table-striped">
         <thead>
           <tr>
             <td>
               Name
             </td>
             <td>
-              Email
-            </td>
-            <td>
-              Address
-            </td>
-            <td>
-              Phone
-            </td>
-            <td>
               Departments
             </td>
-              <td>
-              Comment
-              </td>
           </tr>
         </thead>
         <tbody>
@@ -41,26 +29,18 @@
             <td>
                 <a href="{{ route('user_by_id', ['user_by_id' => $one->id]) }}">{{$one->name ?? ""}}</a>
             </td>
-            <td>
-                {{$one->email ?? ""}}
-            </td>
-            <td>
-                {{$one->user_address ?? ""}}
-            </td>
-            <td>
-                {{$one->phone_number ?? ""}}
-            </td>
               <td>
                   {{$one->department ? $one->department->name : ""}}
               </td>
-              <td>
-                  {{$one->comment ?? ""}}
-            </td>
 
           </tr>
         @endforeach
         </tbody>
       </table>
+        </div>
+        <div class="col-md-2">
+            <a class="btn btn-primary" href="{{ route('all-for-index')}}">Начальная страница</a>
+        </div>
     </div>
 
 

@@ -11,8 +11,8 @@
   <body>
 
 
-    <div class="row m-5 col-md-5">
-      <table class="table table-dark table-striped">
+    <div class="justify-content-center row m-5">
+        <div class="col-md-7"><table class="offset-2 table table-dark table-striped">
         <thead>
           <tr>
             <td>
@@ -40,17 +40,23 @@
         @endforeach
         </tbody>
       </table>
+        </div>
+        <div class="offset-1 col-md-2">
+            <a class="btn btn-primary" href="{{ route('all-for-index')}}">Начальная страница</a>
+        </div>
     </div>
 
-        <form action="{{route('depart')}}" method = "POST" class="col-md-4 m-5">
+    <div class="row justify-content-center"> <form action="{{route('depart')}}" method = "POST" class="col-md-4 m-5">
       <div class="mb-3">
           @csrf
         <label for="departmentInput" class="mb-0 form-label">Department name</label>
         <input type="text" class="form-control" name="name" id="name" aria-describedby="emailHelp" required>
-
+          @error('name')
+          <div class = "alert alert-danger">{{ 'Name already exists' }}</div>
+          @enderror
       </div>
       <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
+    </form> </div>
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
