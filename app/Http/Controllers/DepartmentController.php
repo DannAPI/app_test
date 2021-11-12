@@ -2,41 +2,39 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\DepartmentRequest;
 use App\Models\Department;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 
-class DepartmentController extends BController
+
+class DepartmentController
 {
-    protected $department;
+    protected $departments;
     protected $id;
 
-    public function all_department()
+
+    public function allDepartment()
     {
-        $department = Department::all();
-        return view('departments', ['department' => $department]);
+        $departments = Department::all();
+        return view('departments', ['department' => $departments]);
+
+    }
+    public function allDepartmentForIndex()
+    {
+        $departments = Department::all();
+        return view('index', ['departments' => $departments]);
     }
 
-    public function add_department(Request $request)
+    public function addDepartment(DepartmentRequest $request)
     {
-        $input = $request->all();
-        $validator = Validator::make($input, [
-            'name' => 'required',
-        ]);
-        if ($validator->fails()) {
-            return $this->sendError('Validation Error.', $validator->errors());
-        }
-        $department = Department::create($input);
-        return redirect()->route('all', [$department]);
+        $departments = Department::create($request->all());
+        return redirect()->route('all', [$departments]);
     }
 
-    public function delete_department($id)
+    public function deleteDepartment($id)
     {
-        $department = Department::find($id);
-        if ($department) {
-            $department->delete();
-        } else return $this->sendError('Department for deleted not found');
-        return redirect()->route('all', [$department]);
+        $departments = Department::find($id);
+        $departments->delete();
+        return redirect()->route('all', [$departments]);
     }
 
 }
