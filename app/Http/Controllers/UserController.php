@@ -2,41 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UserRequest;
 use App\Models\User;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 
-class UserController extends BController
+class UserController
 {
-    public function all_user()
+    public function allUser()
     {
         $user = User::all();
         return view('users', ['user' => $user]);
     }
 
-    public function add_user(Request $request)
+    public function addUser(UserRequest $request)
     {
-        $input = $request->all();
-        $validator = Validator::make($input, [
-            'name' => 'required',
-            'phone_number' => 'required',
-            'user_address' => 'required',
-            'comment' => 'required',
-            'email'=>'required|email',
-            'department_id'=>'integer',
-        ]);
-        if ($validator->fails()) {
-            return $this->sendError('Validation Error.', $validator->errors());
-        }
-        $user = User::create($input);
-        return redirect()->route('users', [$user]);
+        User::create($request->all());
+        return redirect()->route('users');
     }
-    public function user_by_id($id)
+    public function userId($id)
     {
         $user = User::find($id);
-        if (is_null($user)) {
-            return $this->sendError('User not found.');
-        }
         return view('user_by_id', ['user' => $user, 'comment' => $user->comment]);
     }
 
