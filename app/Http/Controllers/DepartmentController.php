@@ -10,7 +10,6 @@ class DepartmentController
 {
     protected $departments;
     protected $id;
-    protected $hello;
 
 
     public function allDepartment()
